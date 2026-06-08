@@ -17,6 +17,9 @@
     "react-router-dom": "^7.17.0"
   },
   "devDependencies": {
+    "@emnapi/core": "^1.11.0",
+    "@emnapi/runtime": "^1.11.0",
+    "@emnapi/wasi-threads": "^2.0.0",
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
