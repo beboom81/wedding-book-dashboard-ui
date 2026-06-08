@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { request, HTTP_POST } from '../lib/api';
 import { auth } from '../lib/auth';
 
@@ -62,10 +62,8 @@ export default function LoginPage() {
             Sign In
           </button>
         </form>
-        <hr className="my-3" />
-        <p className="text-center small mb-0">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-decoration-none">Register</Link>
+        <p className="text-center text-muted small mt-3 mb-0">
+          Contact the admin to get access.
         </p>
       </div>
     </div>

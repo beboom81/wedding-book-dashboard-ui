@@ -142,8 +142,8 @@ export default function DashboardPage() {
   const loadStats = useCallback(async () => {
     try {
       const [s, p] = await Promise.all([
-        request(HTTP_GET, '/api/v2/stats').token(token).send<Stats>(),
-        request(HTTP_GET, '/api/v2/user').token(token).send<UserProfile>(),
+        request(HTTP_GET, '/api/stats').token(token).send<Stats>(),
+        request(HTTP_GET, '/api/user').token(token).send<UserProfile>(),
       ]);
       setStats(s.data);
       setProfile(p.data);
@@ -294,7 +294,7 @@ function SettingsPanel({ profile, token, onSaved }: { profile: UserProfile; toke
         confetti_animation: confetti,
       };
       if (oldPwd && newPwd) { body.old_password = oldPwd; body.new_password = newPwd; }
-      await request('PATCH', '/api/v2/user').token(token).body(body).send();
+      await request('PATCH', '/api/user').token(token).body(body).send();
       setMsg('✅ Saved successfully');
       setOldPwd(''); setNewPwd('');
       onSaved();
@@ -308,7 +308,7 @@ function SettingsPanel({ profile, token, onSaved }: { profile: UserProfile; toke
   const rotateKey = async () => {
     if (!confirm('Generate a new guest key? The old key will stop working.')) return;
     try {
-      await request(HTTP_PUT, '/api/v2/key').token(token).send();
+      await request(HTTP_PUT, '/api/key').token(token).send();
       setMsg('✅ Key rotated — update VITE_GUEST_KEY in wedding-book-ui');
       onSaved();
     } catch (e: unknown) {
