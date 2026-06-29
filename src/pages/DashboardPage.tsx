@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { request, HTTP_GET, HTTP_PUT, HTTP_DELETE } from '../lib/api';
+import { request, HTTP_GET, HTTP_POST, HTTP_PUT, HTTP_DELETE } from '../lib/api';
 import { auth } from '../lib/auth';
 import type { Stats, UserProfile, CommentItem, CommentListV2 } from '../lib/types';
 
@@ -49,9 +49,9 @@ function CommentCard({
     if (!replyText.trim()) return;
     setLoading(true);
     try {
-      await request(HTTP_PUT, `/api/comment/${c.uuid}`)
+      await request(HTTP_POST, `/api/comment`)
         .token(token)
-        .body({ comment: replyText })
+        .body({ id: c.uuid, name: 'Admin', presence: true, comment: replyText, gif_id: null })
         .send();
       setReplyText('');
       setShowReply(false);
